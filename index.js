@@ -14,8 +14,9 @@ const getWorker = (file, content, query) => {
   }
 
   if (query.shared) {
-      return `new SharedWorker(${workerPublicPath})`;
+    return `new SharedWorker(${workerPublicPath})`;
   }
+
   return `new Worker(${workerPublicPath})`;
 };
 
