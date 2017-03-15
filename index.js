@@ -12,6 +12,10 @@ const getWorker = (file, content, query) => {
     const fallbackWorkerPath = query.fallback === false ? 'null' : workerPublicPath;
     return `require(${createInlineWorkerPath})(${JSON.stringify(content)}, ${fallbackWorkerPath})`;
   }
+
+  if (query.shared) {
+      return `new SharedWorker(${workerPublicPath})`;
+  }
   return `new Worker(${workerPublicPath})`;
 };
 
